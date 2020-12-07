@@ -1,7 +1,9 @@
 -include butterfly_api/.env
 export
+## Si Windows: cmd -> nmake [alias]
+## Si Linux: bash -> make [alias]
 
-
+### Listes des alias : --------------
 build:  # Créer l'image localement du serveur web Django et du serveur DB MySQL (à faire la première fois ou si ça bug)
 		# Et les lance ensuite
 	sudo docker-compose up --build
