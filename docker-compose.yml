@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'butterfly-db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'gLoùpit0'
+      MYSQL_ROOT_PASSWORD: 'gLoùpit0'
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

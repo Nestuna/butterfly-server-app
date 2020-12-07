@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "16fb1c7b9c2d31878c057d5d9d4048a43950fe5b704e8632f1407c84ed9ec796"
+            "sha256": "df5160b8655dbc1dbf837eb41245975409037b06ef78e62fc65d866b96e33a84"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -40,12 +40,30 @@
             "index": "pypi",
             "version": "==0.4.5"
         },
+        "django-mysql": {
+            "hashes": [
+                "sha256:2f70c348b539f75753b56d7f952b6c6b153b984477220c1dd59763c030ddbba0",
+                "sha256:a70704f8c2f18a02991ad926a2cfe37ab418f034ebda88f2547b96099dbff5ed"
+            ],
+            "index": "pypi",
+            "version": "==3.9.0"
+        },
         "djangorestframework": {
             "hashes": [
                 "sha256:0209bafcb7b5010fdfec784034f059d512256424de2a0f084cb82b096d6dd6a7"
             ],
             "index": "pypi",
             "version": "==3.12.2"
+        },
+        "mysqlclient": {
+            "hashes": [
+                "sha256:3f39855a4ad22805361e782cc4d1010ac74796225fa2d1c03cc16673ccdc983a",
+                "sha256:a6b5648f648b16335e3b1aaec93dc3fcc81a9a661180e306936437cc522c810b",
+                "sha256:edd42ccaa444b00702d5374b2f5f7585c9d0ce201917f15339f1c3cf91c1b1ed",
+                "sha256:fb2f75aea14722390d2d8ddf384ad99da708c707a96656210a7be8af20a2c5e5"
+            ],
+            "index": "pypi",
+            "version": "==2.0.1"
         },
         "pytz": {
             "hashes": [

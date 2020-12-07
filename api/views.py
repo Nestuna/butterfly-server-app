@@ -1,4 +1,4 @@
-from django.db import IntegrityError
+from django.db.utils import IntegrityError
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse, HttpResponse
@@ -27,8 +27,8 @@ class Login(View):
             new_user.save()
             return HttpResponse(status=200)
         except IntegrityError as e:
-            if 'UNIQUE constraint' in str(e):
-                return HttpResponse('User name already exists', status=401 )
-            else:
-                print('Login.post() : ', e)
-                return HttpResponse(status=400)
+            message = 'Breaking DB Constraint: Probably, user already exists'
+            return HttpResponse(message, status=401)
+        except Exception as e:
+            print('Login.post() : ', e)
+            return HttpResponse(status=400)
