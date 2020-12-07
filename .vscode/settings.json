@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "butteryfly-project",
+      "database": "${workspaceFolder:butterfly_project_back}/db.sqlite3"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
