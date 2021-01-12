@@ -1,9 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
-from api.views import Login
 from django.views.decorators.csrf import csrf_exempt
 
+from api.views import Login
+from api.views import ConversationResponse
+
 urlpatterns = [
-    path(r'login/', csrf_exempt(Login.as_view()), name='login'),
-    path(r'login/<int:user_id>', csrf_exempt(Login.as_view()), name='login')
+    path('login/', csrf_exempt(Login.as_view()), name='login'),
+    path('login/<int:user_id>', csrf_exempt(Login.as_view()), name='login'),
+    path('conversation/', csrf_exempt(ConversationResponse.as_view()), name='conversation')
 ]
+

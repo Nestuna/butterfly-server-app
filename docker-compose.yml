@@ -10,6 +10,7 @@ services:
       MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'gLoùpit0'
       MYSQL_ROOT_PASSWORD: 'gLoùpit0'
+      HOST: 'db'
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000

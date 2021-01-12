@@ -1,14 +1,20 @@
+# django
 from django.db.utils import IntegrityError
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.models import User
+# utils
 from api.serializers import UserSerializer
 import json
+import uuid
+import datetime
+# models
+from django.contrib.auth.models import User
+from api.models import Conversation
 
-# Create your views here.
+
 class Login(View):
-    def get(self, request, user_id):
+    def get(self, request, user_id, prenom):
         try:
             user = User.objects.get(pk=user_id)
             serializer = UserSerializer(user)
@@ -30,5 +36,25 @@ class Login(View):
             message = 'Breaking DB Constraint: Probably, user already exists'
             return HttpResponse(message, status=401)
         except Exception as e:
-            print('Login.post() : ', e)
-            return HttpResponse(status=400)
+            print('Login POST : ', e)
+            return HttpResponse(status=500)
+
+class ConversationResponse(View):
+    def get(self, request, access_id):
+        return
+
+    def post(self, request):
+        try:
+            json_conversation = request.body.decode("utf-8")
+            dict_conversation = json.loads(json_conversation)
+
+            Conversation.objects.create(
+                access_id = uuid.uuid1().hex,
+                lifespan = datetime.timedelta(days=int(dict_conversation['lifespan'])),
+                nb_users = int(dict_conversation['nb_users'])
+            )
+            return HttpResponse(status=200)   
+        except Exception as e:
+            print('ConversationResponse POST : ', e)
+            return HttpResponse(status=500)
+
