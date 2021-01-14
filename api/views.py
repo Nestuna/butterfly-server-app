@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse, HttpResponse
 # utils
-from api.serializers import UserSerializer
+from api.serializers import UserSerializer, ConversationSerializer
 import json
 import uuid
 import datetime
@@ -40,8 +40,15 @@ class Login(View):
             return HttpResponse(status=500)
 
 class ConversationResponse(View):
-    def get(self, request, access_id):
-        return
+    def get(self, request):
+        try:
+            access_id = request.GET.get('access_id')
+            conversation = Conversation.objects.get(access_id=access_id)
+            serializer = ConversationSerializer(conversation)
+            return JsonResponse(serializer.data)
+        except Exception as e:
+            print('ConversationResponse GET : ', e)
+            return HttpResponse(status=400)
 
     def post(self, request):
         try:
