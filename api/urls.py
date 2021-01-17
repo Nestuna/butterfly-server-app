@@ -10,3 +10,4 @@ urlpatterns = [
     path('conversation/', csrf_exempt(ConversationResponse.as_view())),
 ]
 
+## URL type : conversation/?access_id=ihjgdoirg64646drhgdrhg

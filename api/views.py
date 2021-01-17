@@ -54,13 +54,14 @@ class ConversationResponse(View):
         try:
             json_conversation = request.body.decode("utf-8")
             dict_conversation = json.loads(json_conversation)
+            access_id = uuid.uuid4().hex
 
             Conversation.objects.create(
-                access_id = uuid.uuid1().hex,
+                access_id = access_id,
                 lifespan = datetime.timedelta(days=int(dict_conversation['lifespan'])),
                 nb_users = int(dict_conversation['nb_users'])
             )
-            return HttpResponse(status=200)   
+            return HttpResponse(access_id, status=200)   
         except Exception as e:
             print('ConversationResponse POST : ', e)
             return HttpResponse(status=500)
