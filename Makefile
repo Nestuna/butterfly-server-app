@@ -8,7 +8,7 @@ build:  # Créer l'image localement du serveur web Django et du serveur DB MySQL
 		# Et les lance ensuite
 	sudo docker-compose up --build
 
-run: #Lance les serveurs seulement
+run: build #Lance les serveurs seulement
 	sudo docker-compose up
 
 shell : # Ouvre la console python dans l'environnement de Django
