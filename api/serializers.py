@@ -13,3 +13,8 @@ class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
         fields = ['access_id', 'creator_pseudo', 'lifespan']
+
+class ConversationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Conversation
+        fields = ['pseudo', 'date', 'text']

@@ -66,3 +66,15 @@ class ConversationResponse(View):
             print('ConversationResponse POST : ', e)
             return HttpResponse(status=500)
 
+class ConversationMessagesResponse(View):
+    def get(self, request):
+        try:
+            access_id = request.GET.get('access_id')
+            conversation = Conversation.objects.get(access_id=access_id)
+            conversation_serializer = ConversationSerializer(conversation)
+            conversation_data = conversation_serializer.data
+            return JsonResponse()
+        except Exception as e:
+            print('ConversationResponse GET : ', e)
+            return HttpResponse(status=400)
+

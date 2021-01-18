@@ -10,4 +10,12 @@ class Conversation(Model):
     access_id = models.CharField(max_length=32)
     creator_pseudo = models.CharField(max_length=32, null=True)
     lifespan = models.DurationField()
-    
+
+class Message(Model):
+    # attributs
+    author = models.CharField(max_length=32)
+    date = models.DateField()
+    text = models.CharField(max_length=200, null=True)
+
+    # relations
+    conversation = models.ForeignKey(Conversation, related_name='messages', on_delete=models.CASCADE)
