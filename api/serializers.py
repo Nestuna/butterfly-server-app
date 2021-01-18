@@ -12,4 +12,4 @@ class UserSerializer(serializers.ModelSerializer):
 class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
-        fields = ['access_id', 'nb_users', 'lifespan']
+        fields = ['access_id', 'creator_pseudo', 'lifespan']

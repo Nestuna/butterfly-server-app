@@ -58,8 +58,8 @@ class ConversationResponse(View):
 
             Conversation.objects.create(
                 access_id = access_id,
+                creator_pseudo = dict_conversation['pseudo'],
                 lifespan = datetime.timedelta(days=int(dict_conversation['lifespan'])),
-                nb_users = int(dict_conversation['nb_users'])
             )
             return HttpResponse(access_id, status=200)   
         except Exception as e:

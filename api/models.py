@@ -8,6 +8,6 @@ import json
 
 class Conversation(Model):
     access_id = models.CharField(max_length=32)
-    nb_users = models.IntegerField()
+    creator_pseudo = models.CharField(max_length=32, null=True)
     lifespan = models.DurationField()
     
