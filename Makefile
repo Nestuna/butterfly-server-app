@@ -17,7 +17,7 @@ shell : # Ouvre la console python dans l'environnement de Django
 makemigrations : # Inscrit les modifications de la DB dans le registre
 	sudo docker-compose run web python manage.py makemigrations
 
-migrate: # Applique les modifications
+migrate: # Applique les modifications de la DB
 	sudo docker-compose run web python manage.py migrate
 
 bash: # Ouvre un shell bash dans le serveur
