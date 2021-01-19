@@ -14,7 +14,7 @@ class ConversationSerializer(serializers.ModelSerializer):
         model = Conversation
         fields = ['access_id', 'creator_pseudo', 'lifespan']
 
-class ConversationSerializer(serializers.ModelSerializer):
+class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
         fields = ['pseudo', 'date', 'text']
