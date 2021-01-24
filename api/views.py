@@ -62,13 +62,14 @@ class ConversationResponse(View):
         try:
             conversation_json = request.body.decode('utf-8')
             conversation_dict = json.loads(conversation_json)
-            access_id = conversation_dict['conversationAccessId']
+            access_id = conversation_dict['access_id']
             conversation = Conversation.objects.get(access_id=access_id)
             conversation.delete()
             return HttpResponse(status=200)
         except Exception as e:
             print('ConversationResponse DELETE : ', e)
             return HttpResponse(status=500)
+
 
 class ConversationMessagesResponse(View):
     def get(self, request):
@@ -144,11 +145,11 @@ class Login(View):
     def post(self, request):
         json_user = request.body.decode("utf-8")
         dict_user = json.loads(json_user)
-        try :
+        try:
             new_user = User.objects.create_user(dict_user['username'], dict_user['email'], dict_user['password'])
             new_user.save()
             return HttpResponse(status=200)
-        except IntegrityError as e:
+        except IntegrityError:
             message = 'Breaking DB Constraint: Probably, user already exists'
             return HttpResponse(message, status=401)
         except Exception as e:
