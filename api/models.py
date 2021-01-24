@@ -6,11 +6,13 @@ from butterfly_api import settings
 import datetime
 import json
 
+
 class Conversation(Model):
     access_id = models.CharField(max_length=32)
     creator_pseudo = models.CharField(max_length=32, null=True)
     lifespan = models.DurationField()
 
+    users = models.ManyToManyField(User, related_name='users')
 
 class Message(Model):
     # attributs

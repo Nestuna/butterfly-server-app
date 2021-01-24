@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from environ import Env 
-              # new
+from environ import Env
+# new
 env = Env()                           # new
 env.read_env(env_file='butterfly_api/.env')  # new
 
@@ -29,8 +29,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.94', '127.0.0.1', '10.0.0.1', '172.18.0.3']
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -80,7 +79,7 @@ WSGI_APPLICATION = 'butterfly_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default':  env.db()
+    'default': env.db()
 }
 
 
