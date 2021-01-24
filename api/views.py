@@ -30,14 +30,30 @@ class ConversationResponse(View):
             dict_conversation = json.loads(json_conversation)
             access_id = uuid.uuid4().hex
 
-            Conversation.objects.create(
+            conversation = Conversation.objects.create(
                 access_id = access_id,
                 creator_pseudo = dict_conversation['pseudo'],
                 lifespan = datetime.timedelta(days=int(dict_conversation['lifespan'])),
             )
+
+            user = User.objects.get(username = dict_conversation['pseudo'])
+            conversation.users.add(user)
+
             return HttpResponse(access_id, status=200)
         except Exception as e:
             print('ConversationResponse POST : ', e)
+            return HttpResponse(status=500)
+
+    def put(self, request):
+        try:
+            json_conversation = request.body.decode("utf-8")
+            dict_conversation = json.loads(json_conversation)
+
+            user = User.objects.get(username = dict_conversation['pseudo'])
+            conversation.users.add(user)
+            return HttpResponse(status=200)
+        except Exception as e:
+            print('ConversationResponse PUT : ', e)
             return HttpResponse(status=500)
 
     def delete(self, request):
@@ -95,6 +111,21 @@ class ConversationMessagesResponse(View):
             print('ConversationMessagesResponse POST: ', e)
             return HttpResponse(status=400)
 
+class ConversationUser(View):
+    def get(self, request):
+        try:
+            username = request.GET.get('username')
+            print(username)
+            conversations = Conversation.objects.filter(users__username=username)
+            conversations_list = []
+            for conversation in conversations:
+                conversations_list.append(conversation.access_id)
+
+            return HttpResponse(json.dumps(conversations_list), status=200)
+
+        except Exception as e:
+            print('ConversationMessagesResponse GET : ', e)
+            return JsonResponse({"nope":""}, status=400)
 
 class Login(View):
     def get(self, request, user_id, username):
@@ -121,4 +152,3 @@ class Login(View):
         except Exception as e:
             print('Login POST : ', e)
             return HttpResponse(status=500)
-

@@ -14,7 +14,7 @@ from pathlib import Path
 from environ import Env
 # new
 env = Env()                           # new
-env.read_env(env_file='butterfly_api/.env')  # new
+env.read_env(env_file='./.env')  # new
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
