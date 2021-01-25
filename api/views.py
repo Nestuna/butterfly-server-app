@@ -49,6 +49,8 @@ class ConversationResponse(View):
             json_conversation = request.body.decode("utf-8")
             dict_conversation = json.loads(json_conversation)
 
+            conversation = Conversation.objects.get(access_id = dict_conversation['accessId'])
+
             user = User.objects.get(username = dict_conversation['pseudo'])
             conversation.users.add(user)
             return HttpResponse(status=200)
@@ -88,7 +90,7 @@ class ConversationMessagesResponse(View):
 
             conversation_messages = {**conversation_data, 'messages': messages_list}
 
-            return JsonResponse(messages_list, status=200)
+            return HttpResponse(json.dumps(conversation_messages), status=200)
         except Exception as e:
             print('ConversationMessagesResponse GET : ', e)
             return JsonResponse({}, status=400)
@@ -98,7 +100,7 @@ class ConversationMessagesResponse(View):
             request_body = request.body.decode("utf-8")
             message = json.loads(request_body)
             print(message)
-            access_id = message['access_id']
+            access_id = message['accessId']
 
             Message.objects.create(
                 username = message['username'],
