@@ -121,8 +121,10 @@ class ConversationUser(View):
             print(username)
             conversations = Conversation.objects.filter(users__username=username)
             conversations_list = []
+            i = 0
             for conversation in conversations:
-                conversations_list.append(conversation.access_id)
+                conversations_list.append({'id': i, 'accessId': conversation.access_id})
+                i += 1
 
             return HttpResponse(json.dumps(conversations_list), status=200)
 

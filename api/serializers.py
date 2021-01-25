@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
-        fields = ['access_id', 'creator_pseudo', 'lifespan']
+        fields = ['id', 'access_id', 'creator_pseudo', 'lifespan']
 
 
 class MessageSerializer(serializers.ModelSerializer):
