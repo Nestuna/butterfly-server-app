@@ -62,7 +62,7 @@ class ConversationResponse(View):
         try:
             conversation_json = request.body.decode('utf-8')
             conversation_dict = json.loads(conversation_json)
-            access_id = conversation_dict['access_id']
+            access_id = conversation_dict['accessId']
             conversation = Conversation.objects.get(access_id=access_id)
             conversation.delete()
             return HttpResponse(status=200)
