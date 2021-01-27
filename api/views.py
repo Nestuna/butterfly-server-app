@@ -118,7 +118,6 @@ class ConversationUser(View):
     def get(self, request):
         try:
             username = request.GET.get('username')
-            print(username)
             conversations = Conversation.objects.filter(users__username=username)
             conversations_list = []
             i = 0
